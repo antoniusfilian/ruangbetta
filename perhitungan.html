@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Perhitungan Biaya</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f0f0f0;
+				margin: 0;
+				padding: 0;
+			}
+			.container {
+				max-width: 400px;
+				margin: 50px auto;
+				padding: 20px;
+				background-color: #fff;
+				border-radius: 5px;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			}
+			h1 {
+				text-align: center;
+			}
+			label {
+				display: block;
+				margin-bottom: 10px;
+			}
+			input[type='number'] {
+				width: 100%;
+				padding: 8px;
+				margin-bottom: 15px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				box-sizing: border-box;
+			}
+			button {
+				width: 100%;
+				padding: 10px;
+				background-color: #007bff;
+				color: #fff;
+				border: none;
+				border-radius: 3px;
+				cursor: pointer;
+			}
+			button:hover {
+				background-color: #0056b3;
+			}
+			.result {
+				margin-top: 20px;
+				padding: 10px;
+				background-color: #f9f9f9;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+			}
+			input[type='number'] {
+				width: 100%;
+				padding: 8px;
+				margin-bottom: 15px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				box-sizing: border-box;
+			}
+			select {
+				width: 100%;
+				padding: 8px;
+				margin-bottom: 15px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				box-sizing: border-box;
+			}
+			img {
+				max-width: 100%;
+				height: auto;
+				display: block;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Perhitungan Biaya</h1>
+			<div class="image" id="image">
+				<img
+					src="https://www.wikimedia.org/static/images/wmf-logo-2x.png"
+					alt="Persegi Panjang"
+					width="200"
+				/>
+			</div>
+			<br />
+			<label for="jenis">Jenis Akuarium:</label>
+			<select id="jenis" onchange="updateGambar()">
+				<option value="aquarium_std">Aquarium Standard</option>
+				<option value="filter_samping">Filter Samping</option>
+				<option value="filter_belakang">Filter Belakang</option>
+				<option value="aquarium_paludarium">Aquarium Paludarium</option>
+			</select>
+			<label for="panjang">Panjang:</label>
+			<input type="number" id="panjang" placeholder="Panjang dalam satuan cm" />
+			<label for="lebar">Lebar:</label>
+			<input type="number" id="lebar" placeholder="Lebar dalam satuan cm" />
+			<label for="tinggi">Tinggi:</label>
+			<input type="number" id="tinggi" placeholder="Tinggi dalam satuan cm" />
+			<button onclick="hitungBiaya()">Hitung Biaya</button>
+			<div class="result" id="result">Estimasi Biaya:</div>
+		</div>
+		<script>
+			function hitungBiaya() {
+				const panjang = parseFloat(document.getElementById('panjang').value);
+				const lebar = parseFloat(document.getElementById('lebar').value);
+				const tinggi = parseFloat(document.getElementById('tinggi').value);
+				const biaya = panjang * lebar * tinggi;
+				document.getElementById(
+					'result'
+				).innerHTML = `Estimasi Biaya: ${biaya}`;
+			}
+			function updateGambar() {
+				const jenis = document.getElementById('jenis').value;
+				switch (jenis) {
+					case 'aquarium_std':
+						document.getElementById('image').innerHTML =
+							'<img src="https://www.wikimedia.org/static/images/wmf-logo-2x.png" alt="Persegi Panjang" width="200">';
+						break;
+					case 'filter_samping':
+						document.getElementById('image').innerHTML =
+							'<img src="https://plus.unsplash.com/premium_photo-1676637000058-96549206fe71?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D" alt="Persegi" width="200">';
+						break;
+					case 'filter_belakang':
+						document.getElementById('image').innerHTML =
+							'<img src="https://plus.unsplash.com/premium_photo-1676637000058-96549206fe71?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D" alt="Jajar Genjang" width="200">';
+						break;
+					case 'aquarium_paludarium':
+						document.getElementById('image').innerHTML =
+							'<img src="https://www.wikimedia.org/static/images/wmf-logo-2x.png" alt="Persegi Panjang" width="200">';
+						break;
+				}
+			}
+		</script>
+	</body>
+</html>
